@@ -1,0 +1,13 @@
+res://src/game.tscn
+res://images/acceleration.gdshader
+res://images/dissolve.gdshader
+res://images/modulate.gdshader
+res://images/shield.gdshader
+res://images/vignette.gdshader
+res://src/upgrade_area2d.gd
+res://src/game.gd
+res://src/Global.gd
+res://Credits.txt
+res://src/player.gd
+res://src/player.tscn
+res://src/mob.gd

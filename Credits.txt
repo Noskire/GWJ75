@@ -1,0 +1,55 @@
+https://www.youtube.com/watch?v=GwCiGixlqiU
+Your First 2D GAME From Zero with GODOT 4! **Vampire Survivor Style**
+Used as base
+Codes: Rotation, Sibling, Spawn
+
+Idea from PeteTimesSix from GWJ discord
+"(I'd say I spent the time on making my base mechanics solid,
+but honestly a lot of that time went to watching bullets bounce off walls)"
+
+Vikfro pelo early feedback
+
+Used as base for sprite:
+https://2dgameartguru.com/top-down-view-soldier/
+
+Palette
+https://lospec.com/palette-list/fantasy-24
+
+Trail from:
+https://www.youtube.com/watch?v=y8bi0_Fggn0
+
+(Maybe) Useful shaders:
+	https://godotshaders.com/shader/scrolling-line-background/
+	https://godotshaders.com/shader/particle-star/
+	
+	https://godotshaders.com/shader/pixel-perfect-outline-shader/
+
+Shaders used:
+	https://godotshaders.com/shader/vignette-with-reduced-banding-artifacts/
+	https://godotshaders.com/shader/2d-dissolve-with-burn-edge/
+	https://godotshaders.com/shader/sprite-sheet-compatible-rainbow-effect/
+	https://godotshaders.com/shader/simple-energy-shield-2/
+	https://godotshaders.com/shader/acceleration-effect/
+
+WildCards
+	Memento Mori (adicionar uma caveirinha onde o player morreu nas partidas anteriores)
+
+TODO:
+	Adicionar highscore
+	E outras informações na interface
+	
+	Fazer um menu de upgrade como nessa imagem:
+	https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/259410/ss_5b1d05fd33d658d39c31c6e197d54b24de0c3200.1920x1080.jpg
+
+DON'T DO
+	Undo (Undo one of their actions) Um 'anti'-dash?
+	Why Limit Yourself (control more than one character/object at the time) No?
+	O mouse 'mover' o tiro antes dele ser refletido?
+
+Usar como base?
+https://stardewvalleywiki.com/Journey_of_the_Prairie_King
+
+SFX
+	Tiro atingindo inimigo
+	Tiro atingindo player 'Ugh'
+	Slime 'mastigando' o player 'Mhmhmh'

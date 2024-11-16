@@ -1,0 +1,14 @@
+Button
+VBoxContainer
+HBoxContainer
+CollisionShape2D
+Area2D
+Node2D
+CanvasLayer
+AnimationPlayer
+Label
+RayCast2D
+TileMapLayer
+TextureRect
+AnimationTree
+Sprite2D
