@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://c7c7stak47tuc"]
+[gd_scene load_steps=24 format=4 uid="uid://c7c7stak47tuc"]
 
 [ext_resource type="PackedScene" uid="uid://3en8k3fm06er" path="res://src/player.tscn" id="1_2ss4m"]
 [ext_resource type="Script" path="res://src/game.gd" id="1_w3pgj"]
@@ -6,8 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://c7h3h8d8fjyio" path="res://images/Walls.png" id="2_vo3kp"]
 [ext_resource type="Texture2D" uid="uid://b81wmrbb4n2s1" path="res://images/tile.png" id="2_ywx3p"]
 [ext_resource type="Texture2D" uid="uid://bctyvy8bomwh1" path="res://images/Crosshair.png" id="4_63kxp"]
+[ext_resource type="PackedScene" uid="uid://qo7c1u521ql2" path="res://src/health_sphere.tscn" id="4_etd57"]
+[ext_resource type="Texture2D" uid="uid://2jysjqfwcpfo" path="res://images/dash_top.png" id="5_igwva"]
 [ext_resource type="Shader" path="res://images/vignette.gdshader" id="5_qcleb"]
 [ext_resource type="PackedScene" uid="uid://5kd47cki0t7o" path="res://src/gate.tscn" id="6_5ghpv"]
+[ext_resource type="Texture2D" uid="uid://b2ljttcmxifv5" path="res://images/dash_over.png" id="6_su1f6"]
+[ext_resource type="Texture2D" uid="uid://c21mna5ub7s0q" path="res://images/Upgrades.png" id="9_di7o7"]
+[ext_resource type="Texture2D" uid="uid://drkari7psl5tu" path="res://images/up_bar.png" id="10_cr5bp"]
+[ext_resource type="Script" path="res://src/game_menu.gd" id="14_24ye2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c85vx"]
 texture = ExtResource("2_ywx3p")
@@ -80,6 +86,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WavesControl/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WavesControl/VBoxTexture:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WavesControl/VBoxLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../WavesControl/UpgradeDetail:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bxvf7"]
 resource_name = "NewWave"
@@ -147,6 +201,54 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WavesControl/TextureRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WavesControl/VBoxTexture:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../WavesControl/VBoxLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../WavesControl/UpgradeDetail:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5dfqf"]
 _data = {
@@ -184,6 +286,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_vo3kp")
+
+[node name="HighScore" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.5
+offset_top = 40.0
+offset_right = 182.5
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "000000000"
+horizontal_alignment = 1
+
+[node name="Health" parent="CanvasLayer" instance=ExtResource("4_etd57")]
+offset_left = 100.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = -30.0
+
+[node name="Dash" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -250.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 4
+texture_under = ExtResource("5_igwva")
+texture_progress = ExtResource("6_su1f6")
 
 [node name="Player" parent="." instance=ExtResource("1_2ss4m")]
 position = Vector2(976, 563)
@@ -232,61 +370,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.164706, 0.113725, 0.0509804, 1)
 
-[node name="GameOver" type="CanvasLayer" parent="."]
-process_mode = 2
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.498039)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -434.0
-offset_top = -316.0
-offset_right = 434.0
-offset_bottom = 316.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 25
-
-[node name="Game Over" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 160
-text = "Game Over"
-
-[node name="Kills" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "0"
-horizontal_alignment = 1
-
-[node name="Shots" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "0"
-horizontal_alignment = 1
-
-[node name="ShotYourself" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "0"
-horizontal_alignment = 1
-
-[node name="Restart" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Restart"
-
 [node name="WavesControl" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -329,8 +412,128 @@ offset_right = 347.0
 offset_bottom = 426.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
-text = "Choose a upgrade"
+text = "Choose an upgrade"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="WavesControl"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -120.0
+offset_right = 480.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_di7o7")
+
+[node name="VBoxTexture" type="VBoxContainer" parent="WavesControl"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -46.0
+offset_right = -53.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="WavesControl/VBoxTexture"]
+layout_mode = 2
+max_value = 5.0
+texture_progress = ExtResource("10_cr5bp")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="WavesControl/VBoxTexture"]
+layout_mode = 2
+max_value = 5.0
+texture_progress = ExtResource("10_cr5bp")
+
+[node name="TextureProgressBar3" type="TextureProgressBar" parent="WavesControl/VBoxTexture"]
+layout_mode = 2
+max_value = 5.0
+texture_progress = ExtResource("10_cr5bp")
+
+[node name="TextureProgressBar4" type="TextureProgressBar" parent="WavesControl/VBoxTexture"]
+layout_mode = 2
+max_value = 5.0
+texture_progress = ExtResource("10_cr5bp")
+
+[node name="TextureProgressBar5" type="TextureProgressBar" parent="WavesControl/VBoxTexture"]
+layout_mode = 2
+max_value = 1.0
+texture_progress = ExtResource("10_cr5bp")
+
+[node name="VBoxLabel" type="VBoxContainer" parent="WavesControl"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -40.0
+offset_right = -158.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="WavesControl/VBoxLabel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="WavesControl/VBoxLabel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="WavesControl/VBoxLabel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="WavesControl/VBoxLabel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="WavesControl/VBoxLabel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 / 1"
+horizontal_alignment = 1
+
+[node name="UpgradeDetail" type="RichTextLabel" parent="WavesControl"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 38.0
+offset_top = -40.0
+offset_right = 388.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][font_size=24][b]Health +[/b][/font_size]
+
+It gives apfm ms[/center]"
+fit_content = true
 
 [node name="VBox" type="VBoxContainer" parent="WavesControl"]
 modulate = Color(1, 1, 1, 0)
@@ -339,48 +542,43 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -211.5
-offset_top = -345.0
-offset_right = 211.5
-offset_bottom = 345.0
+offset_left = -48.0
+offset_top = -40.0
+offset_right = -23.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 60
 
 [node name="Button1" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 80
-disabled = true
-text = "+50 Health"
+theme_override_font_sizes/font_size = 14
+text = "+"
 
 [node name="Button2" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 80
-disabled = true
-text = "+10% Speed"
+theme_override_font_sizes/font_size = 14
+text = "+"
 
 [node name="Button3" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 80
-disabled = true
-text = "+ Shoot Rate"
+theme_override_font_sizes/font_size = 14
+text = "+"
 
 [node name="Button4" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 80
-disabled = true
-text = "- Dash Cooldown"
+theme_override_font_sizes/font_size = 14
+text = "+"
 
 [node name="Button5" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 80
-disabled = true
-text = "Two Hands"
+theme_override_font_sizes/font_size = 14
+text = "+"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WavesControl"]
 root_node = NodePath("../../CanvasLayer")
@@ -388,11 +586,93 @@ libraries = {
 "": SubResource("AnimationLibrary_5dfqf")
 }
 
+[node name="GameOver" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 3
+visible = false
+script = ExtResource("14_24ye2")
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -423.5
+offset_right = 400.0
+offset_bottom = 423.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="GameOver" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HighScore" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="Survive" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="Kills" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="Shots" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="ShotYourself" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Restart"
+
+[node name="Menu" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Back to Menu"
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
-[connection signal="button_up" from="GameOver/ColorRect/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="WavesControl/VBox/Button1" to="." method="_on_upgrade_btn_click" binds= [1]]
+[connection signal="mouse_entered" from="WavesControl/VBox/Button1" to="." method="_on_upgrade_btn_hover" binds= [1]]
+[connection signal="mouse_exited" from="WavesControl/VBox/Button1" to="." method="_on_upgrade_btn_leave"]
 [connection signal="button_up" from="WavesControl/VBox/Button2" to="." method="_on_upgrade_btn_click" binds= [2]]
+[connection signal="mouse_entered" from="WavesControl/VBox/Button2" to="." method="_on_upgrade_btn_hover" binds= [2]]
+[connection signal="mouse_exited" from="WavesControl/VBox/Button2" to="." method="_on_upgrade_btn_leave"]
 [connection signal="button_up" from="WavesControl/VBox/Button3" to="." method="_on_upgrade_btn_click" binds= [3]]
+[connection signal="mouse_entered" from="WavesControl/VBox/Button3" to="." method="_on_upgrade_btn_hover" binds= [3]]
+[connection signal="mouse_exited" from="WavesControl/VBox/Button3" to="." method="_on_upgrade_btn_leave"]
 [connection signal="button_up" from="WavesControl/VBox/Button4" to="." method="_on_upgrade_btn_click" binds= [4]]
+[connection signal="mouse_entered" from="WavesControl/VBox/Button4" to="." method="_on_upgrade_btn_hover" binds= [4]]
+[connection signal="mouse_exited" from="WavesControl/VBox/Button4" to="." method="_on_upgrade_btn_leave"]
 [connection signal="button_up" from="WavesControl/VBox/Button5" to="." method="_on_upgrade_btn_click" binds= [5]]
+[connection signal="mouse_entered" from="WavesControl/VBox/Button5" to="." method="_on_upgrade_btn_hover" binds= [5]]
+[connection signal="mouse_exited" from="WavesControl/VBox/Button5" to="." method="_on_upgrade_btn_leave"]
 [connection signal="animation_finished" from="WavesControl/AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="button_up" from="GameOver/ColorRect/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
+[connection signal="button_up" from="GameOver/ColorRect/VBoxContainer/Menu" to="." method="_on_menu_button_up"]

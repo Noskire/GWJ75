@@ -7,7 +7,13 @@ extends CharacterBody2D
 @onready var gun_2 = $Gun2
 @onready var hurt_box = $HurtBox
 @onready var health_bar = $HealthBar
+
 @onready var anim = $AnimationPlayer
+
+@onready var asp_dash = $ASPDash
+@onready var asp_shoot = $ASPShoot
+@onready var asp_slime_munching = $ASPSlimeMunching
+@onready var asp_self_shot = $ASPSelfShot
 
 var game
 
@@ -50,6 +56,9 @@ func _ready():
 		set_physics_process(true)
 	else:
 		set_physics_process(true)
+	
+	asp_slime_munching.play()
+	asp_slime_munching.stream_paused = true
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -66,6 +75,7 @@ func _physics_process(delta):
 			can_shoot = true
 	
 	if Input.is_action_pressed("shoot") and can_shoot and not game.wave_state == game.TRANSITIONING:
+		asp_shoot.play()
 		can_shoot = false
 		shoot_timer = 0.0
 		gun.shoot()
@@ -73,6 +83,8 @@ func _physics_process(delta):
 			gun_2.shoot()
 	
 	if Input.is_action_pressed("dash") and can_dash:
+		if not asp_dash.is_playing():
+			asp_dash.play()
 		speed = dash_speed * (1 + 0.1 * upg_speed) # +10% for speed upgrade
 		can_dash = false
 		dashing = true
@@ -95,9 +107,15 @@ func _physics_process(delta):
 	
 	var overlapping_mobs = hurt_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
+		if not asp_slime_munching.is_playing():
+			asp_slime_munching.stream_paused = false
 		deplet_health(damage_rate * overlapping_mobs.size() * delta)
+	else:
+		asp_slime_munching.stream_paused = true
 
 func take_damage(damage):
+	if not asp_self_shot.is_playing():
+		asp_self_shot.play()
 	Signals.self_shot.emit()
 	anim.play("hurt")
 	deplet_health(damage * damage_rate / 2)
@@ -132,6 +150,7 @@ func upgrade(id):
 			health_bar.max_value = max_health
 		2: # Speed
 			upg_speed += 1
+			speed = normal_speed * (1 + 0.1 * upg_speed)
 		3: # Shoot Cooldown
 			upg_shoot_cd += 1
 			shoot_cooldown = 0.3 - 0.05 * upg_shoot_cd
@@ -142,7 +161,10 @@ func upgrade(id):
 			upg_two_hands = true
 			gun_2.visible = true
 	
-	health += max_health / 4.0 #+25% max_health
+	health += max_health / 10.0 #+10% max_health
 	if health > max_health:
 		health = max_health
 	health_bar.value = health
+
+func _on_asp_slime_munching_finished():
+	asp_slime_munching.play()
