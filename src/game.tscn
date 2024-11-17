@@ -1,19 +1,21 @@
-[gd_scene load_steps=24 format=4 uid="uid://c7c7stak47tuc"]
+[gd_scene load_steps=26 format=4 uid="uid://c7c7stak47tuc"]
 
-[ext_resource type="PackedScene" uid="uid://3en8k3fm06er" path="res://src/player.tscn" id="1_2ss4m"]
+[ext_resource type="PackedScene" uid="uid://3en8k3fm06er" path="res://src/player/player.tscn" id="1_2ss4m"]
 [ext_resource type="Script" path="res://src/game.gd" id="1_w3pgj"]
-[ext_resource type="Texture2D" uid="uid://b2xqa5bfukute" path="res://images/BG.png" id="2_fpb18"]
-[ext_resource type="Texture2D" uid="uid://c7h3h8d8fjyio" path="res://images/Walls.png" id="2_vo3kp"]
-[ext_resource type="Texture2D" uid="uid://b81wmrbb4n2s1" path="res://images/tile.png" id="2_ywx3p"]
-[ext_resource type="Texture2D" uid="uid://bctyvy8bomwh1" path="res://images/Crosshair.png" id="4_63kxp"]
-[ext_resource type="PackedScene" uid="uid://qo7c1u521ql2" path="res://src/health_sphere.tscn" id="4_etd57"]
-[ext_resource type="Texture2D" uid="uid://2jysjqfwcpfo" path="res://images/dash_top.png" id="5_igwva"]
-[ext_resource type="Shader" path="res://images/vignette.gdshader" id="5_qcleb"]
-[ext_resource type="PackedScene" uid="uid://5kd47cki0t7o" path="res://src/gate.tscn" id="6_5ghpv"]
-[ext_resource type="Texture2D" uid="uid://b2ljttcmxifv5" path="res://images/dash_over.png" id="6_su1f6"]
-[ext_resource type="Texture2D" uid="uid://c21mna5ub7s0q" path="res://images/Upgrades.png" id="9_di7o7"]
-[ext_resource type="Texture2D" uid="uid://drkari7psl5tu" path="res://images/up_bar.png" id="10_cr5bp"]
+[ext_resource type="Texture2D" uid="uid://b2xqa5bfukute" path="res://images/scenes/BG.png" id="2_fpb18"]
+[ext_resource type="Texture2D" uid="uid://c7h3h8d8fjyio" path="res://images/scenes/Walls.png" id="2_vo3kp"]
+[ext_resource type="Texture2D" uid="uid://b81wmrbb4n2s1" path="res://images/scenes/tile.png" id="2_ywx3p"]
+[ext_resource type="Texture2D" uid="uid://bctyvy8bomwh1" path="res://images/player/Crosshair.png" id="4_63kxp"]
+[ext_resource type="PackedScene" uid="uid://qo7c1u521ql2" path="res://src/scene/health_sphere.tscn" id="4_etd57"]
+[ext_resource type="Texture2D" uid="uid://2jysjqfwcpfo" path="res://images/ui_menu/dash_top.png" id="5_igwva"]
+[ext_resource type="Shader" path="res://images/shaders/vignette.gdshader" id="5_qcleb"]
+[ext_resource type="PackedScene" uid="uid://5kd47cki0t7o" path="res://src/scene/gate.tscn" id="6_5ghpv"]
+[ext_resource type="Texture2D" uid="uid://b2ljttcmxifv5" path="res://images/ui_menu/dash_over.png" id="6_su1f6"]
+[ext_resource type="Texture2D" uid="uid://c21mna5ub7s0q" path="res://images/ui_menu/Upgrades.png" id="9_di7o7"]
+[ext_resource type="Texture2D" uid="uid://drkari7psl5tu" path="res://images/ui_menu/up_bar.png" id="10_cr5bp"]
 [ext_resource type="Script" path="res://src/game_menu.gd" id="14_24ye2"]
+[ext_resource type="Theme" uid="uid://dc7rwsakxshbh" path="res://images/themes/upgrade_btn_theme.tres" id="14_57kfk"]
+[ext_resource type="Theme" uid="uid://b8orl5dhtpil1" path="res://images/themes/menu_theme.tres" id="16_f01i0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c85vx"]
 texture = ExtResource("2_ywx3p")
@@ -265,6 +267,7 @@ script = ExtResource("1_w3pgj")
 layer = -5
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -305,6 +308,25 @@ offset_left = 100.0
 offset_top = -130.0
 offset_right = 200.0
 offset_bottom = -30.0
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = -217.0
+offset_right = 173.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_constants/line_spacing = -50
+theme_override_font_sizes/font_size = 50
+text = "100
+_____
+
+
+100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Dash" type="TextureProgressBar" parent="CanvasLayer"]
 anchors_preset = 3
@@ -392,9 +414,9 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -323.0
+offset_left = -527.5
 offset_top = 152.0
-offset_right = 323.0
+offset_right = 527.5
 offset_bottom = 371.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 160
@@ -406,9 +428,9 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -347.0
+offset_left = -372.5
 offset_top = 316.0
-offset_right = 347.0
+offset_right = 372.5
 offset_bottom = 426.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
@@ -543,41 +565,47 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -48.0
-offset_top = -40.0
+offset_top = -41.0
 offset_right = -23.0
-offset_bottom = 340.0
+offset_bottom = 341.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 60
+theme = ExtResource("14_57kfk")
+theme_override_constants/separation = 58
 
 [node name="Button1" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "+"
 
 [node name="Button2" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "+"
 
 [node name="Button3" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "+"
 
 [node name="Button4" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "+"
 
 [node name="Button5" type="Button" parent="WavesControl/VBox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "+"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WavesControl"]
@@ -598,6 +626,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("16_f01i0")
 color = Color(0, 0, 0, 0.666667)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
@@ -608,12 +637,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -423.5
+offset_top = -470.5
 offset_right = 400.0
-offset_bottom = 423.5
+offset_bottom = 470.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 25
 
 [node name="GameOver" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2

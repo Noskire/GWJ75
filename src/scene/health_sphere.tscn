@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://qo7c1u521ql2"]
+
+[ext_resource type="Shader" path="res://images/shaders/health.gdshader" id="1_7ivxs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddu4c"]
+shader = ExtResource("1_7ivxs")
+shader_parameter/color = Color(0.607843, 0.101961, 0.0392157, 1)
+shader_parameter/fV = 0.8
+
+[node name="Health" type="ColorRect"]
+material = SubResource("ShaderMaterial_ddu4c")
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_right = 100.0
+offset_bottom = -980.0
+grow_vertical = 0
+scale = Vector2(10, 10)
+pivot_offset = Vector2(12.5, 12.5)

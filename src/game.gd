@@ -3,6 +3,7 @@ extends Node2D
 @onready var high_score_label = $CanvasLayer/HighScore
 
 @onready var health_sphere = $CanvasLayer/Health
+@onready var health_label = $CanvasLayer/HealthLabel
 @onready var dash = $CanvasLayer/Dash
 @onready var crosshair = $Crosshair
 
@@ -59,10 +60,10 @@ var shield_chance = 0.0
 enum {TRANSITIONING, CHOOSE_UPGRADE, SHOW_WAVE, WAVING, WAVE_ENDED}
 var wave_state = TRANSITIONING
 
-var mob_path = preload("res://src/mob.tscn")
-var death_path = preload("res://src/death.tscn")
+var mob_path = preload("res://src/enemy/mob.tscn")
+var death_path = preload("res://src/scene/death.tscn")
 
-var menu_path = "res://src/menu.tscn"
+var menu_path = "res://src/menu/menu.tscn"
 
 func _ready():
 	Global.game_node = self
@@ -90,6 +91,11 @@ func _physics_process(delta):
 	high_score_label.set_text("%9.0f" % highscore)
 	
 	health_sphere.material.set_shader_parameter("fV", (Global.player.health / Global.player.max_health))
+	health_label.set_text("%d
+_____
+
+
+%d" % [Global.player.health, Global.player.max_health])
 	if Global.player.can_dash:
 		dash.value = 1.0
 		dash.modulate.a = 1.0
@@ -107,6 +113,10 @@ func _physics_process(delta):
 		SHOW_WAVE:
 			if wave == (max_wave - 1):
 				wave_label.set_text("Last Wave!")
+			elif wave == max_wave:
+				spawn_timer.wait_time = 1.5 - 0.1 * wave
+				shield_chance = 1.0
+				wave_label.set_text("Survive!")
 			else:
 				wave_label.set_text("Wave %2d" % (wave + 1))
 			anim.play("NewWave")
@@ -115,31 +125,22 @@ func _physics_process(delta):
 				wave_state = WAVE_ENDED
 		WAVE_ENDED:
 			wave += 1
-			if wave == max_wave:
-				spawn_timer.wait_time = 1.5 - 0.1 * wave
-				shield_chance = 1.0
-				wave_label.set_text("Survive!")
-				anim.play("NewWave")
-				wave_state = WAVING
-				spawn_timer.autostart = true
-				spawn_timer.start()
-			else:
-				spawn_timer.wait_time = 1.5 - 0.1 * wave
-				wave_num_mobs += 10 + 5 * wave
-				shield_chance += 0.01
-				wave_state = TRANSITIONING
-				
-				if Global.player.upg_health < 5:
-					up_btn_1.disabled = false
-				if Global.player.upg_speed < 5:
-					up_btn_2.disabled = false
-				if Global.player.upg_shoot_cd < 5:
-					up_btn_3.disabled = false
-				if Global.player.upg_dash_cd < 5:
-					up_btn_4.disabled = false
-				if not Global.player.upg_two_hands:
-					up_btn_5.disabled = false
-				anim.play("ClearedWave")
+			spawn_timer.wait_time = 1.5 - 0.1 * wave
+			wave_num_mobs += 10 + 5 * wave
+			shield_chance += 0.01
+			wave_state = TRANSITIONING
+			
+			if Global.player.upg_health < 5:
+				up_btn_1.disabled = false
+			if Global.player.upg_speed < 5:
+				up_btn_2.disabled = false
+			if Global.player.upg_shoot_cd < 5:
+				up_btn_3.disabled = false
+			if Global.player.upg_dash_cd < 5:
+				up_btn_4.disabled = false
+			if not Global.player.upg_two_hands and wave >= 5:
+				up_btn_5.disabled = false
+			anim.play("ClearedWave")
 
 func spam_mob():
 	var boss = false
@@ -174,7 +175,13 @@ func _on_timer_timeout():
 
 func _on_health_depleted():
 	label_best_score.set_text("Score: " + str(highscore))
-	label_survive.set_text("You survive for " + str(wave) + " waves, " + str(int(total_time)) + " seconds.")
+	var s = int(total_time)
+	var m = int(s / 60)
+	s = s % 60
+	if wave == 1:
+		label_survive.set_text("You survive for %d wave, %d:%02d." % [wave, m, s])
+	else:
+		label_survive.set_text("You survive for %d waves, %d:%02d." % [wave, m, s])
 	label_kills.set_text("You killed " + str(kills) + " mobs.")
 	label_shots.set_text("You fired " + str(shots) + " times.")
 	label_shot_yourself.set_text("You shot yourself " + str(shot_yourself) + " times.")
@@ -259,7 +266,9 @@ Currently %.1f[/center]
 		5:
 			txt = "[center][font_size=32][b]Dual Wield[/b][/font_size]
 
-+ 1 pistol, double the shots![/center]"
++ 1 pistol, double the shots!
+
+Available after the fifth wave.[/center]"
 	upgrade_detail.set_text(txt)
 
 func _on_upgrade_btn_leave():

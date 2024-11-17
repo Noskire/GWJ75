@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0nj5ig4hnjo6"]
-
-[ext_resource type="Texture2D" uid="uid://dmioi4vxlcd05" path="res://images/Death.png" id="1_vqmai"]
-
-[node name="Death" type="Sprite2D"]
-z_index = -1
-texture = ExtResource("1_vqmai")

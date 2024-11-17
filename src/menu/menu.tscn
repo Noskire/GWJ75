@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpsis2mlufyca"]
+
+[ext_resource type="Theme" uid="uid://b8orl5dhtpil1" path="res://images/themes/menu_theme.tres" id="1_gcjvc"]
+[ext_resource type="Shader" path="res://images/shaders/BG.gdshader" id="1_mbog6"]
+[ext_resource type="Texture2D" uid="uid://bq3cwywg0nta7" path="res://images/ui_menu/Title.png" id="2_4j7cj"]
+[ext_resource type="Script" path="res://src/menu/menu.gd" id="2_wpv61"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odjgr"]
+shader = ExtResource("1_mbog6")
+shader_parameter/color_one = Color(0.121569, 0.141176, 0.0392157, 1)
+shader_parameter/color_two = Color(0.223529, 0.341176, 0.109804, 1)
+shader_parameter/angle = 45.0
+shader_parameter/line_count = 40.0
+shader_parameter/speed = 3.0
+shader_parameter/blur = 0.0
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gcjvc")
+script = ExtResource("2_wpv61")
+
+[node name="BG" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_odjgr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -595.0
+offset_top = 91.0
+offset_right = 595.0
+offset_bottom = 442.0
+grow_horizontal = 2
+texture = ExtResource("2_4j7cj")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -25.0
+offset_right = 500.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Play" type="Button" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Settings" type="Button" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="Scroll" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -150.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Toggle BG Movement"
+
+[connection signal="button_up" from="HBox/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="HBox/Settings" to="." method="_on_settings_button_up"]
+[connection signal="button_up" from="Scroll" to="." method="_on_scroll_button_up"]

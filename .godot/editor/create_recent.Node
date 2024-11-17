@@ -1,8 +1,10 @@
+Label
+Control
+OptionButton
 ColorRect
 TextureRect
 AudioStreamPlayer
 Camera2D
-Label
 HSlider
 HScrollBar
 HBoxContainer
@@ -10,5 +12,3 @@ GridContainer
 Button
 VBoxContainer
 TextureProgressBar
-Sprite2D
-RichTextLabel
